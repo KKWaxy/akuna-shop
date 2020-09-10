@@ -1,3 +1,11 @@
 $(()=>{
-    $('#carousel').carouFredSel();
+    $('#carousel').carouFredSel(
+      {
+        circular:true,
+        infinite:true,
+        responsive:true,
+        direction:left,
+        align:center
+      }
+    );
   })
