@@ -1,0 +1,53 @@
+{% extends "AkunaApp/base.html" %}
+{% load static %}
+{% block title %}
+  Akuna-SHOP-Accueil
+{% endblock title %}
+
+{% block content %}
+  <main>
+    <header class="akunaApp-header">
+      <section class="navbar navbar-expand-sm shadow">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand">Akuna<strong class="shop" >SHOP</strong><strong>.</strong><i class="fa fa-shopping-cart"></i></a>
+          </div>
+          <nav class="navbar-nav">
+            <li class="nav-item"><a href="" class="nav-link">PRODUITS</a></li>
+            <li class="nav-item"><a href="" class="nav-link">CONTACT</a></li>
+            <li class="nav-item"><a href="" class="nav-link">CONNECTION</a></li>
+            <li class="nav-item"><a href="" class="nav-link"> <i class="fa fa-shopping-cart"><small class="badge badge-danger panier-badge">3</small></i></a></li>
+            <li class="nav-item">
+              <form action="#" class=" navbar-form">
+                <div class="form-group">
+                  {% csrf_token %}
+                  <div class="form-control form-control-search">
+                    <input type="search" class="search-input" placeholder="Rechercher...">  
+                    <button class="search-btn" ><i class="fa fa-search" ></i></button>
+                  </div>
+                </div>
+              </form>
+            </li>
+          </nav>
+        </div>
+      </section>
+    </header>
+    <section class="container">
+      {% block main-content %}
+        <div id="carousel">
+          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
+          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
+          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
+          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
+        </div>
+      {% endblock main-content %}
+    <footer class="akunaApp-footer">
+      <section class="akuna-informations"></section>
+      <section class="copyright">copyright-kkwaxy-2020</section>
+    </footer>
+  </main>
+{% endblock content %}
+
+{% block addScript %}
+  
+{% endblock addScript %}
