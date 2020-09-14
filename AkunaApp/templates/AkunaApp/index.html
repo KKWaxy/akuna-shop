@@ -34,11 +34,83 @@
     </header>
     <section class="container">
       {% block main-content %}
-        <div id="carousel">
-          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
-          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
-          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
-          <img src="{% static 'AkunaApp/images/images.jpg' %} " width="300" alt="" srcset=""/>
+        <div class="row mt-3">
+          <aside class="col-md-3 col-sm-12 border rounded categorie">
+
+          </aside>
+          <div id="carousel" class="col-md-9  pub-carousel">
+            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
+            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
+            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
+            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
+          </div>
+        </div>
+        <div class="row catedorie-produit">
+          <ul class="container nav nav-tabs nav-justified nav-link-ul" role="tablist">
+            <li class="active nav-item">
+              <a  data-toggle="tab" class="active" href="#Nouveau">NOUVEAUTES</a>
+            </li>
+            <li class="nav-item">
+              <a  data-toggle="tab"  href="#Promo">PROMOTION</a>
+            </li>
+            <li class="nav-item">
+              <a  data-toggle="tab" href="#En_vedette">VEDETTE</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade active" id="Nouveau" >
+              <div id="carousel" class="active">
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/>
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/>
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/>
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="Promo" >
+              <div id="carousel"> 
+                <img src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                <img src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/> 
+                <img src=https://via.placeholder.com/250x150  alt="" srcset=""/> 
+              </div>
+            </div>
+            <div class="tab-pane fade" id="En_vedette" >
+              <div id="carousel" class="d-flex justify-content-center align-items-center mt-2">
+                <div class="card">
+                  <img class="card-img-top" src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                  <div class="card-body">
+                    <h4 class="card-title">Libelle Produit</h4>
+                    <p class="card-text">Prix </p>
+                    <a href="#" class="card-link">Ajouter au panier</a>
+                  </div>  
+                </div>  
+                <div class="card">
+                  <img class="card-img-top" src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                  <div class="card-body">
+                    <h4 class="card-title">Libelle Produit</h4>
+                    <p class="card-text">Prix </p>
+                    <a href="#" class="card-link">Ajouter au panier</a>
+                  </div>  
+                </div>  
+                <div class="card">
+                  <img class="card-img-top" src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                  <div class="card-body">
+                    <h4 class="card-title">Libelle Produit</h4>
+                    <p class="card-text">Prix </p>
+                    <a href="#" class="card-link">Ajouter au panier</a>
+                  </div>  
+                </div>  
+                <div class="card">
+                  <img class="card-img-top" src=https://via.placeholder.com/250x150 alt="" srcset=""/>    
+                  <div class="card-body">
+                    <h4 class="card-title">Libelle Produit</h4>
+                    <p class="card-text">Prix </p>
+                    <a href="#" class="card-link">Ajouter au panier</a>
+                  </div>  
+                </div>  
+              </div>
+            </div>
+          </div>
         </div>
       {% endblock main-content %}
     <footer class="akunaApp-footer">

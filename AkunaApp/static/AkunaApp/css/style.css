@@ -7,6 +7,9 @@
 *{
     box-sizing: border-box;
 }
+a:hover{
+    text-decoration: none;
+}
 html,body{
     margin: 0;
     padding: 0; 
@@ -68,4 +71,23 @@ input:hover:focus, input[type^='search']:hover,input[type^='submit']:hover,input
 }
 a:hover{
     outline: none;
+}
+
+.pub-carousel{
+    height: 500px;
+}
+
+.catedorie-produit{
+    margin-top: 6vh;
+}
+
+.catedorie-produit a{
+    color: var(--secondary);
+    font-size: 1.5em;
+    font-weight: 200;
+}
+.catedorie-produit .nav-link-ul{
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
 }
