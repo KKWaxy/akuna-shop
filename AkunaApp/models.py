@@ -68,7 +68,9 @@ class Commande(models.Model):
         
         verbose_name = 'commande'
         verbose_name_plural = 'commandes'
-
+    def __str__(self):
+        return self.name
+    
 
 class Liste(models.Model):
     """

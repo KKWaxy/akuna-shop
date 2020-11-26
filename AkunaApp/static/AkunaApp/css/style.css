@@ -81,7 +81,7 @@ a:hover{
     margin-top: 6vh;
 }
 
-.catedorie-produit a{
+.catedorie-produit .link{
     color: var(--secondary);
     font-size: 1.5em;
     font-weight: 200;
@@ -90,4 +90,21 @@ a:hover{
     display: flex;
     align-content: space-between;
     justify-content: center;
+}
+.add-cart-btn{
+    font-size-adjust: var(--secondary);
+    font-size: .9em;
+    font-weight: 200;
+}
+.vedette-carousel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.vedette-carousel .card{
+    margin-right: 2px;
+}
+.sticky-top{
+    position: sticky;
 }
