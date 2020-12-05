@@ -1,17 +1,23 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User,AnonymousUser
+from AkunaShop.settings import TIME_ZONE
+
+import datetime
 
 class Categorie(models.Model):
     """
         La classe modèle pour les catégories. 
     """
-    libelle = models.CharField(_("Libelle"), max_length=500) 
+    libelle = models.CharField(_("Libelle"), max_length=150) 
+    description = models.TextField(_("Description"), max_length="500", null=True,blank=True)
+    create_date =  models.DateTimeField(_('Date de création'),auto_now_add=True)
+    modified_date = models.DateTimeField(_("Date demodification"),auto_now=True)
 
     class Meta:
         managed = True
-        verbose_name = 'catedgorie'
-        verbose_name_plural = 'catedgories'
+        verbose_name = 'categorie'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return (self.libelle)
@@ -23,16 +29,19 @@ class Produit(models.Model):
     """
     categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE)
     libelle =  models.CharField(_("Libelle"),max_length=500)
-    image=models.ImageField(_("Illustration"))
-    description=models.TextField(_("Description"))
+    image = models.ImageField(_("Illustration"),upload_to='akuna_produits')
+    description = models.TextField(_("Description"))
     slug=models.SlugField(_('slug'))
     prix_unitaire = models.FloatField(_("Prix Unitaire"))
-    quantite_stock = models.IntegerField(_("Quantite en stock"))
-    
+    quantite_stock = models.IntegerField(_("Quantite en stock"))    
+    create_date = models.DateTimeField(_("Date de création"), auto_now_add=True)
+    modified_date = models.DateTimeField(_('Date de modification'), auto_now=True)
+    # delete_date = models.DateField(_("Date de suppresion"), auto_now=True)
     class Meta:
         managed = True
         verbose_name = 'produit'
         verbose_name_plural = 'produits'
+
 
     def __str__(self):
         return self.libelle
@@ -68,6 +77,7 @@ class Commande(models.Model):
         
         verbose_name = 'commande'
         verbose_name_plural = 'commandes'
+
     def __str__(self):
         return self.name
     
