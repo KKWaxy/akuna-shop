@@ -15,7 +15,7 @@ $(()=>{
         }
       }
     );
-
+    
     akuna_window.on('scroll', () => {
         if(akuna_window.scrollTop() > 40){
             $('.akunaApp-header').addClass('sticky-top');
