@@ -113,7 +113,7 @@ a:hover{
     color: white;
 } */
 .card-footer{
-    background-color: var(--secondary);
+    background-color: var(--primmary);
     color: #fdffff;
 }
 .card-title{
