@@ -53,13 +53,13 @@
           <div class="container produits mt-2">
             <div class="row d-flex justify-content-between align-content-between mb-4 ">
               {% for produit in produit_list %}
-                <div class="card shadow" style="width: 250px;">
+                <div class="card shadow mb-2" style="width: 250px;">
                  <a href="#"> <img  src="{{produit.image.url}}" alt="" class=" img-thumbnail card-img-top"></a>
                   <div class="card-body">
                     <div class="d-flex align-content-center mb-2 justify-content-center">
                       <h5 class="card-title produit-name mr-auto" data-name=" {{ produit.libelle }} " >{{ produit.libelle|capfirst }}</h5>
-                      <a href="#" class="btn btn-outline-success border-0 rounded-pill "><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
-                      <a href="#" class="btn border-0 btn-outline-success rounded-pill"><i>Voir...</i></a>
+                      <button class="add-cart-btn btn btn-outline-success border-0 rounded-pill "><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                      <a href="#" class="btn border-0 btn-outline-success ml-1 rounded-pill"><i>Voir...</i></a>
                     </div>
                     <div class="card-footer border rounded">
                       <h4 class="produit-prix">
@@ -70,45 +70,6 @@
                 </div>
               {% endfor %}
             </div>
-            {% comment %} <div class="row d-flex  justify-content-between align-content-between">
-
-              <div class="card shadow" style="width: 250px;">
-                <img src="https://via.placeholder.com/250x250" alt="" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Produits 12</h5>
-                  <div class="produit-footer">
-                    <h4 class="poduit-prix ">
-                      1200 CFA
-                    </h4>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card shadow" style="width: 250px;">
-                <img src="https://via.placeholder.com/250x250" alt="" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Produits 12</h5>
-                  <div class="produit-footer">
-                    <h4 class="poduit-prix ">
-                      1200 CFA
-                    </h4>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card shadow" style="width: 250px;">
-                <img src="https://via.placeholder.com/250x250" alt="" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Produits 12</h5>
-                  <div class="produit-footer">
-                    <h4 class="poduit-prix ">
-                      1200 CFA
-                    </h4>
-                  </div>
-                </div>
-              </div>
-
-            </div> {% endcomment %}
           </div>
           <div class="akuna-produit-pagination">
             {% comment %} <span class="step-links">
@@ -202,6 +163,8 @@
     </footer>
   </main>
 {% endblock content %}
-
+  
 {% block addScript %}
+  {% load static %}
+  <script src="{% static 'AkunaApp/js/cart.js' %}"></script>
 {% endblock addScript %}
