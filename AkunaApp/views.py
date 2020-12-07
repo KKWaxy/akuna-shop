@@ -1,16 +1,21 @@
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.contrib.auth.models import User
 
+from .models import Produit,Categorie
+
 class HomeView(ListView):
     
     ctx={}
-    model=User
+    model = Produit
     template_name='AkunaApp/index.html'
 
     def get_context_data(self,**kwargs):
-        self.ctx= super(HomeView,self).get_context_data(**kwargs)    
+
+        self.ctx= super(HomeView,self).get_context_data(**kwargs)
+        categories = Categorie.objects.all()
+        self.ctx["categories"]=categories
+
         return(self.ctx)
         
     def get_queryset(self):
@@ -18,6 +23,7 @@ class HomeView(ListView):
 
     def get_template_names(self):
         return super().get_template_names()
+    
 
 class ProductDetailView(DetailView):
     pass

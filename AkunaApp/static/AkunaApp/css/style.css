@@ -108,3 +108,14 @@ a:hover{
 .sticky-top{
     position: sticky;
 }
+/* .card{
+    background-color: var(--secondary);
+    color: white;
+} */
+.card-footer{
+    background-color: var(--secondary);
+    color: #fdffff;
+}
+.card-title{
+    text-align: center;
+}

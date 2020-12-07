@@ -46,6 +46,7 @@ class Produit(models.Model):
     def __str__(self):
         return self.libelle
 
+        verbose_name_plural = 'client_profiles'
 
 class Client(User):
     """
@@ -63,6 +64,20 @@ class Client(User):
     def __str__(self):
         return ("{0} {1}".format(self.username))
 
+class Profile(models.Model):
+    """
+        Classe modèle pour attribuer un profile client à chaque client.
+    """
+    
+    client =  models.OneToOneField(Client,on_delete=models.CASCADE)
+    avatar = models.ImageField(_("Photo de profile"),upload_to = "clients_avatar")
+    create_date = models.DateTimeField(_("Date de création"), auto_now_add=True)
+    modified_date = models.DateTimeField(_('Date de modification'), auto_now=True)
+    
+
+    class Meta:
+        managed = True
+        verbose_name = 'client_profile'
 
 class Commande(models.Model):
     """
@@ -94,5 +109,3 @@ class Liste(models.Model):
         
         verbose_name = 'liste'
         verbose_name_plural = 'listes'
-
-
