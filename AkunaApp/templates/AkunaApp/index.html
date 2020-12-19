@@ -12,53 +12,68 @@
             <a href="#" class="navbar-brand">Akuna<strong class="shop" >SHOP</strong><strong>.</strong><i class="fa fa-shopping-cart"></i></a>
           </div>
           <nav class="navbar-nav">
-            <li class="nav-item"><a href="" class="nav-link">PRODUITS</a></li>
-            <li class="nav-item"><a href="" class="nav-link">CONTACT</a></li>
-            <li class="nav-item"><a href="" class="nav-link">CONNEXION</a></li>
-            <li class="nav-item"><a href="" class="nav-link"> <i class="fa fa-shopping-cart"><small class="badge badge-danger panier-badge">3</small></i></a></li>
             <li class="nav-item">
-              <form action="#" class=" navbar-form">
-                <div class="form-group">
+              <form action="#" class=" w-100 navbar-form">
+                <div class="form-group w-100">
                   {% csrf_token %}
-                  <div class="form-control form-control-search">
+                  <div class="form-control form-control-search w-100">
                     <input type="search" class="search-input" placeholder="Rechercher...">  
                     <button class="search-btn" ><i class="fa fa-search" ></i></button>
                   </div>
                 </div>
               </form>
             </li>
+            <li class="nav-item"><a href="" class="nav-link">Produits</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Contacts</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Connexion</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Panier <i class="fa fa-shopping-cart"><small class="badge badge-danger panier-badge">3</small></i></a></li>
           </nav>
         </div>
       </section>
     </header>
     <section class="container">
       {% block main-content %}
-        <div class="row mt-3">
-          <aside class="col-md-3 d-flex flex-column pt-2  col-sm-12 border rounded categorie">
+        <div class="row mt-3 d-flex justify-content-between">
+          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie">
             {% for categorie in categories %}
-              <div class=" d-flex align-content-center justify-content-start border produit">
+              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border">
                 <button class="btn bg-transparent w-100 text-left produit-btn" >{{ categorie.libelle }} <div class="badge badge-danger  badge-pill w-25 h-25"></div> </button>
               </div>
-              <hr>
             {% endfor %}
           </aside>
-          <div id="carousel" class="col-md-9 shadow pub-carousel">
-            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
-            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
-            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
-            <img src=https://via.placeholder.com/1280x720 height="450" alt="" srcset=""/>
+          <div id="owl-carousel" class="col-md-7 shadow rounded p-0 owl-theme owl-carousel">
+            <div class="carousel-elt">
+              <img class=" rounded " src=https://via.placeholder.com/720x450 height="400" alt="" srcset=""/>
+            </div>
+            <div class=" carousel-elt">
+              <img class=" rounded " src=https://via.placeholder.com/720x450 height="400" alt="" srcset=""/>
+            </div>
+            <div class="carousel-elt">
+              <img class=" rounded " src=https://via.placeholder.com/720x450 height="400" alt="" srcset=""/>
+            </div>
+            <div class=" carousel-elt">
+              <img class=" rounded " src=https://via.placeholder.com/720x450 height="400" alt="" srcset=""/>
+            </div>
           </div>
+          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie">
+            {% for categorie in categories %}
+              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border">
+                {% csrf_token %}
+                <button class="btn bg-transparent w-100 text-left produit-btn" >{{ categorie.libelle }} <span class="badge badge-danger  badge-pill w-25 h-25"></span> </button>
+              </div>
+            {% endfor %}
+          </aside>
         </div>
         <div class="row mt-3">
           <div class="container produits mt-2">
             <div class="row d-flex justify-content-between align-content-between mb-4 ">
               {% for produit in produit_list %}
                 <div class="card shadow mb-2" style="width: 250px;">
-                 <a href="#"> <img  src="{{produit.image.url}}" alt="" class=" img-thumbnail card-img-top"></a>
+                 <a href="#"> <img  src="{{produit.image.url}}" alt="" class="img-thumbnail card-img-top"></a>
                   <div class="card-body">
                     <div class="d-flex align-content-center mb-2 justify-content-center">
-                      <h5 class="card-title produit-name mr-auto" data-name=" {{ produit.libelle }} " >{{ produit.libelle|capfirst }}</h5>
-                      <button class="add-cart-btn btn btn-outline-success border-0 rounded-pill "><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                      <h5 class="card-title produit-name mr-auto"  >{{ produit.libelle|capfirst }}</h5>
+                      <button class="add-cart-btn btn btn-outline-success border-0 rounded-pill update-cart" data-action="add"  data-produit={{ produit.id }}><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
                       <a href="#" class="btn border-0 btn-outline-success ml-1 rounded-pill"><i>Voir...</i></a>
                     </div>
                     <div class="card-footer border rounded">
@@ -165,6 +180,9 @@
 {% endblock content %}
   
 {% block addScript %}
+  <script type="text/javascript" >
+    let user = '{{request.user}}';
+  </script>
   {% load static %}
-  <script src="{% static 'AkunaApp/js/cart.js' %}"></script>
+  <script  src="{% static 'AkunaApp/js/cart.js' %}"></script>
 {% endblock addScript %}

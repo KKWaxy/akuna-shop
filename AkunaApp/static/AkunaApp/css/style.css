@@ -76,7 +76,20 @@ a:hover{
 .pub-carousel{
     height: 500px;
 }
+.categorie{
+    font-weight: 100;
+    font-size: .2em;
+    border:solid 2px var(--primmary);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
 
+aside.categorie div:hover {
+    background-color: var(--primmary);
+    color: white;
+    font-weight: bold;
+    
+}
 .catedorie-produit{
     margin-top: 6vh;
 }
