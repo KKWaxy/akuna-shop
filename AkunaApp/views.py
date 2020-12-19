@@ -2,6 +2,8 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.contrib.auth.models import User
 
+from django.http import JsonResponse
+
 from .models import Produit,Categorie
 
 class HomeView(ListView):
@@ -27,3 +29,7 @@ class HomeView(ListView):
 
 class ProductDetailView(DetailView):
     pass
+
+
+def updateProduitCommande(request):
+    return JsonResponse("Donnée",safe=False)
