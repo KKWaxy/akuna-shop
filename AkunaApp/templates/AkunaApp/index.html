@@ -5,39 +5,14 @@
 
 {% block content %}
   <main>
-    <header class="akunaApp-header">
-      <section class="navbar akuna-navbar navbar-expand-sm shadow">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a href="#" class="navbar-brand">Akuna<strong class="shop" >SHOP</strong><strong>.</strong><i class="fa fa-shopping-cart"></i></a>
-          </div>
-          <nav class="navbar-nav">
-            <li class="nav-item">
-              <form action="#" class=" w-100 navbar-form">
-                <div class="form-group w-100">
-                  {% csrf_token %}
-                  <div class="form-control form-control-search w-100">
-                    <input type="search" class="search-input" placeholder="Rechercher...">  
-                    <button class="search-btn" ><i class="fa fa-search" ></i></button>
-                  </div>
-                </div>
-              </form>
-            </li>
-            <li class="nav-item"><a href="" class="nav-link">Produits</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Contacts</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Connexion</a></li>
-            <li class="nav-item"><a href="" class="nav-link">Panier <i class="fa fa-shopping-cart"><small class="badge badge-danger panier-badge">3</small></i></a></li>
-          </nav>
-        </div>
-      </section>
-    </header>
+    {% include "AkunaApp/akuna-fragments/AkunaApp-header.html" %}
     <section class="container">
       {% block main-content %}
         <div class="row mt-3 d-flex justify-content-between">
-          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie">
+          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie-aside">
             {% for categorie in categories %}
-              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border">
-                <button class="btn bg-transparent w-100 text-left produit-btn" >{{ categorie.libelle }} <div class="badge badge-danger  badge-pill w-25 h-25"></div> </button>
+              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border categorie">
+                <button class="btn w-100 text-left catedgorie-btn" >{{ categorie.libelle }} <div class="badge badge-danger  badge-pill w-25 h-25"></div> </button>
               </div>
             {% endfor %}
           </aside>
@@ -55,9 +30,9 @@
               <img class=" rounded " src=https://via.placeholder.com/720x450 height="400" alt="" srcset=""/>
             </div>
           </div>
-          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie">
+          <aside class="col-md-2 col-sm-12 pt-2 rounded border shadow categorie-aside">
             {% for categorie in categories %}
-              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border">
+              <div class="d-flex p-0 mb-2 align-content-center rounded justify-content-start border categorie-aside-div">
                 {% csrf_token %}
                 <button class="btn bg-transparent w-100 text-left produit-btn" >{{ categorie.libelle }} <span class="badge badge-danger  badge-pill w-25 h-25"></span> </button>
               </div>
@@ -66,15 +41,19 @@
         </div>
         <div class="row mt-3">
           <div class="container produits mt-2">
+            <div class="row d-flex align-content-center justify-content-center mt-3 mb-3"><hr class="w-25 "><h5 class="text-muted">COMPOSANTS ELECTRONIQUES</h5> <hr class="w-25"> </div>
             <div class="row d-flex justify-content-between align-content-between mb-4 ">
               {% for produit in produit_list %}
                 <div class="card shadow mb-2" style="width: 250px;">
-                 <a href="#"> <img  src="{{produit.image.url}}" alt="" class="img-thumbnail card-img-top"></a>
+                 <a href="{{produit.get_absolute_url}}"> <img  src="{{produit.image.url}}" alt="" class="img-thumbnail card-img-top"></a>
                   <div class="card-body">
                     <div class="d-flex align-content-center mb-2 justify-content-center">
                       <h5 class="card-title produit-name mr-auto"  >{{ produit.libelle|capfirst }}</h5>
-                      <button class="add-cart-btn btn btn-outline-success border-0 rounded-pill update-cart" data-action="add"  data-produit={{ produit.id }}><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-                      <a href="#" class="btn border-0 btn-outline-success ml-1 rounded-pill"><i>Voir...</i></a>
+                        <button class="add-cart-btn btn btn-outline-success border-0 rounded-pill update-cart" data-action="add"  data-produit={{ produit.id }}><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                      {% comment %} <form method="post" data-id:"{{produit.id}}" data-name:"{{produit.libelle}}" data-categorie:"{{produit.categorie}}" >
+                        {% csrf_token %}
+                      </form> {% endcomment %}
+                      <a href="{{produit.get_absolute_url}}" class="btn border-0 btn-outline-success ml-1 rounded-pill"><i>Voir...</i></a>
                     </div>
                     <div class="card-footer border rounded">
                       <h4 class="produit-prix">
@@ -172,6 +151,7 @@
           </div>
         </div> {% endcomment %}
       {% endblock main-content %}
+    </section>
     <footer class="akunaApp-footer">
       <section class="akuna-informations"></section>
       <section class="copyright text-center">copyright-kkwaxy-2020</section>
@@ -184,5 +164,5 @@
     let user = '{{request.user}}';
   </script>
   {% load static %}
-  <script  src="{% static 'AkunaApp/js/cart.js' %}"></script>
+  <script  src="{% static 'AkunaApp/js/cart.js' %}?20181209"></script>
 {% endblock addScript %}

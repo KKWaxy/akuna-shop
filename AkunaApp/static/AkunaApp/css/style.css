@@ -2,7 +2,8 @@
 :root{
     --primmary:#192633;
     --secondary:#0ee668;
-    --fird:#fdffff;
+    --fird:#fffdfd;
+    --danger:#ff0202;
 }
 *{
     box-sizing: border-box;
@@ -60,7 +61,7 @@ input:hover:focus, input[type^='search']:hover,input[type^='submit']:hover,input
     outline: none;
     border: none;
 }
-.shop{
+.shop, .panier{
     color: var(--secondary);
 }
 .nav-link{
@@ -84,17 +85,14 @@ a:hover{
     border-bottom-left-radius: 10px;
 }
 
-aside.categorie div:hover {
+/* aside.categorie-aside div:hover {
     background-color: var(--primmary);
     color: white;
     font-weight: bold;
-    
-}
-.catedorie-produit{
-    margin-top: 6vh;
-}
+    font-size: 1em;  
+} */
 
-.catedorie-produit .link{
+/* .catedorie-produit .link{
     color: var(--secondary);
     font-size: 1.5em;
     font-weight: 200;
@@ -103,7 +101,7 @@ aside.categorie div:hover {
     display: flex;
     align-content: space-between;
     justify-content: center;
-}
+} */
 .add-cart-btn{
     font-size-adjust: var(--secondary);
     font-size: .9em;
@@ -131,4 +129,24 @@ aside.categorie div:hover {
 }
 .card-title{
     text-align: center;
+}
+.panier-titre{
+    background-color: var(--primmary);
+    color: var(--fird);
+}
+.panier-titre th{
+    color: var(--fird);
+}
+.panier-sous-total{
+    color: var(--secondary);
+}
+.total-panier{
+    color: var(--primmary);
+}
+.btn-mise-a-jour{
+    background-color: #0ee668;
+    border: 0;
+}
+.total-panier-somme, .suprimer-produit-panier,.suprimer-produit-panier-icon{
+    color: var(--danger);
 }

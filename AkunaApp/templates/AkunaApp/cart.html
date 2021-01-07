@@ -1,0 +1,92 @@
+{% extends 'AkunaApp/index.html' %}
+{% block main-content %}
+<div class="row d-flex justify-content-center align-items-center mt-5  ">
+	<hr class="w-25" />
+	<h2 class="" >Mon<strong class="panier">Panier</strong></h2>
+	<hr class="w-25" />
+</div>
+<div class="row">
+	<div class="col-md-8 col-xs-12">
+		<form action="{% url 'cart' %}" method="post">
+			{% csrf_token %}
+			
+				<table class="d-table justify-content-center shadow align-items-center table table-responsive mt-5" cellspacing="3">
+						<thead>
+							<tr class="mb-2 panier-titre rounded-top">
+								<th class="product-remove" scope="col" ><i class="fa fa-shopping-cart"></th>
+								<th class="product-thumbnail" scope="col">&nbsp;</th>
+								<th class="product-name" scope="col">Produit</th>
+								<th class="product-price" scope="col">Prix Unitaire</th>
+								<th class="product-quantity" scope="col">Quantité</th>
+								<th class="product-subtotal" scope="col">Sous-total</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							{% for elt_panier in panier_elts %}
+							<tr class="d-table-row mt-2">
+								<td class="d-flex  justify-content-center align-items-center">
+									<div class="mt-3">
+										<a href="#" class="delete_item d-flex justify-content-center align-items-center m-0" aria-label="suprimer-element" data-title="{{ elt_panier.produit.libelle }}" data-action="delete" data-product_id="{{ elt_panier.id}}">
+											<input type="hidden" name="{{ elt_panier.id }}" value="">
+											<span class="mr-2 suprimer-produit-panier">Suprimer</span>
+											<i class="fa fa-trash suprimer-produit-panier-icon"></i>
+										</a>
+									</div>
+								</td>
+								<td class="thumbnail">
+									<a href="{{ elt_panier.produit.get_absolute_url }}">
+										<img width="60" height="60" src="{{ elt_panier.produit.image.url }}" class=" border-0 img-thumbnail" alt="" loading="lazy" srcset="" sizes="(max-width: 500px) 100vw, 500px">
+									</a>						
+								</td>
+								<td class="product-name" data-title="Produit">
+									<div class="mt-3">
+										<a href="{{ elt_panier.produit.get_absolute_url }}">{{ elt_panier.produit.libelle }}</a>
+									</div>						
+								</td>
+								<td class="product-price" data-title="Prix">
+									<div class="mt-3">
+										<span class=""><bdi>{{ elt_panier.produit.prix_unitaire|floatformat:2 }} <span class="">CFA</span></bdi></span>
+									</div>						
+								</td>
+								<td class="" data-title="Quantité">
+									<div class="mt-2">
+										<div class="quantity buttons_added">
+											<span class="minus kt-spin-button kt-icon-angle-down"></span>
+											<input type="number" id="quantity" class=" form-control-range form-control" step="1" min="0" max="{{ elt_panier.produit.quantite_stock }}" name="{{elt_panier.id}}" value="1" title="Qté" size="4" placeholder="" inputmode="numeric">
+											<span class="plus kt-spin-button kt-icon-angle-up"></span>
+										</div>
+									</div>
+								</td>
+								<td class="product-subtotal" data-title="Sous-total">
+									<div class="panier-sous-total mt-3">
+										<span class=""><strong>{{elt_panier.produit.total}} CFA</strong></bdi></span>
+									</div>
+								</td>
+							</tr>
+							{% endfor %}
+							<tr class=" d-table-row mt-3">
+								<td colspan="4" class="actions">
+									<button type="submit" class=" btn btn-success btn-mise-a-jour" name="update_cart" value="Mettre à jour le panier" aria-disabled="true">Mettre à jour le panier<i class="fas fa-sync-alt ml-1"></i></button>
+								</td>
+								<td>
+									<span class="total-panier"><strong>Total :</strong></bdi></span>
+								</td>
+								<td>
+									<span class=" total-panier-somme "><strong>1 000 000 CFA</strong></bdi></span>
+								</td>
+							</tr>
+						</tbody>
+						
+				</table>
+			
+		</form>
+	</div>
+	<aside class="col-md-3 d-flex  border rounded">
+		<div class="aside-valide-panier">
+			<h5 class="Bilan-panier panier ">Bilan</h5>
+		</div>
+		<a href="#" class="valide-panier btn border align-self-end form-control">Valider Panier</a>
+	</aside>
+</div>
+{% endblock main-content %}

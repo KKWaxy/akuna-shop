@@ -2,7 +2,8 @@ Cookies = {}
 
 Cookies.createCookie = function(name,data){
     document.cookie = name + '=' + JSON.stringify(data) + ';domain=;path=/';
-    return(Cookies.getCookie(name));
+    let cookie = Cookies.getCookie(name);
+    return(cookie);
 };
 
 Cookies.getCookie = (name)=>{
@@ -20,13 +21,10 @@ Cookies.getCookie = (name)=>{
     return cookieValue;
   };
 
-Cookies.addCookieData = (name,cookie,data) =>{
+Cookies.addCookieData = (name,cookie) =>{
     if(cookie == null){
         return 0;
     }else{
-        console.log(cookie);
-        cookie.products.push(data);
-        console.log(cookie.products);
         document.cookie = name + '=' + JSON.stringify(cookie) + ';domain=;path=/';
         return 1;
     }

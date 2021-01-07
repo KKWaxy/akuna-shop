@@ -1,0 +1,135 @@
+@import url();
+:root{
+    --primmary:#192633;
+    --secondary:#0ee668;
+    --fird:#fdffff;
+}
+*{
+    box-sizing: border-box;
+}
+a:hover{
+    text-decoration: none;
+}
+html,body{
+    margin: 0;
+    padding: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input:hover:focus, input[type^='search']:hover,input[type^='submit']:hover,input[type^='text']:hover{
+    outline: none;
+}
+.navbar{
+    background-color:  var(--primmary) ;
+    color: var(--fird);
+}
+.navbar-brand{
+    font-size: 2rem;
+    color: var(--fird);
+}
+.navbar-brand:hover{
+    outline: none;
+    color: var(--fird);
+}
+.form-control-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.panier-badge{
+    font-family: sans-serif;
+    font-size: .5rem;
+    border-radius: 360px;
+}
+.form-control-search:hover{
+    box-shadow: 0px 0px 5px 1px #0ee668 ;
+}
+.search-input,.search-input:active{
+    outline: none;
+    border: none;
+    margin: 0;  
+}
+.search-input:focus{
+    font-size: 1.2rem;
+}
+.search-btn{
+    margin: 0;
+    padding: 0;
+    color: var(--secondary);
+    background-color: var(--fird);
+    outline: none;
+    border: none;
+}
+.shop{
+    color: var(--secondary);
+}
+.nav-link{
+    color: var(--fird);
+}
+.nav-link:hover{
+    color: var(--secondary);
+}
+a:hover{
+    outline: none;
+}
+
+.pub-carousel{
+    height: 500px;
+}
+
+.categorie{
+    font-weight: 100;
+    font-size: .2em;
+    border:solid 2px var(--primmary);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+/* .categorie-aside div.categorie:hover {
+    background-color: #0ee668;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+} */
+/* .catedorie-produit{
+    margin-top: 6vh;
+} */
+
+/* .catedorie-produit .link{
+    color: var(--secondary);
+    font-size: 1.5em;
+    font-weight: 200;
+} */
+/* .catedorie-produit .nav-link-ul{
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+} */
+.add-cart-btn{
+    font-size-adjust: var(--secondary);
+    font-size: .9em;
+    font-weight: 200;
+}
+.vedette-carousel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.vedette-carousel .card{
+    margin-right: 2px;
+}
+.sticky-top{
+    position: sticky;
+}
+/* .card{
+    background-color: var(--secondary);
+    color: white;
+} */
+.card-footer{
+    background-color: var(--primmary);
+    color: #fdffff;
+}
+.card-title{
+    text-align: center;
+}

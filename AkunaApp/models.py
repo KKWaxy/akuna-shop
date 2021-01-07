@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User,AnonymousUser
-from AkunaShop.settings import TIME_ZONE
+
 
 import datetime
 
@@ -21,6 +21,10 @@ class Categorie(models.Model):
 
     def __str__(self):
         return (self.libelle)
+    
+    # def get_absolute_url(self):
+    #     return reverse("model_detail", kwargs={"pk": self.pk})
+    
 
 
 class Produit(models.Model):
@@ -36,17 +40,19 @@ class Produit(models.Model):
     quantite_stock = models.IntegerField(_("Quantite en stock"))    
     create_date = models.DateTimeField(_("Date de création"), auto_now_add=True)
     modified_date = models.DateTimeField(_('Date de modification'), auto_now=True)
+    
     # delete_date = models.DateField(_("Date de suppresion"), auto_now=True)
     class Meta:
         managed = True
         verbose_name = 'produit'
         verbose_name_plural = 'produits'
 
-
     def __str__(self):
         return self.libelle
-
-        verbose_name_plural = 'client_profiles'
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("detail-produit", kwargs={"pk":self.id,"slug": self.slug})
 
 class Client(User):
     """
@@ -60,6 +66,7 @@ class Client(User):
     class Meta:
         verbose_name = 'client'
         verbose_name_plural = 'clients'
+        
 
     def __str__(self):
         return ("{0} {1}".format(self.username))
@@ -78,6 +85,7 @@ class Profile(models.Model):
     class Meta:
         managed = True
         verbose_name = 'client_profile'
+        verbose_name_plural = 'client_profiles'
 
 class Commande(models.Model):
     """
@@ -95,16 +103,83 @@ class Commande(models.Model):
 
     def __str__(self):
         return self.name
+        
+
+class PanierModel(models.Model):
+    """
+    Le modèle de panier
+    """
+    create_date = models.DateTimeField(_("Date de création"), auto_now_add=True)
+    modified_date = models.DateTimeField(_('Date de modification'), auto_now=True)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'PanierModel'
+        verbose_name_plural = 'PanierModels'
+    
+    def __str__(self):
+        
+        return (str(self.id))
+
+class PanierElementModel(models.Model):
+    """
+    Le modèle du contenu du panier
+    """
+    panier = models.ForeignKey(PanierModel,on_delete=models.CASCADE)
+    produit = models.ForeignKey(Produit,on_delete=models.DO_NOTHING)
+    quantite = models.IntegerField(_("Quantite"),default=1)
+    date_ajout = models.DateTimeField(_("Date d'ajout"),auto_now_add=True)
+    date_modif = models.DateTimeField(_("Date modification"),auto_now=True)
+
+    class Meta:
+        db_table = ''
+        ordering = ['date_ajout']
+        managed = True
+        verbose_name = 'PanierElementModel'
+        verbose_name_plural = 'PanierElementModels'
+        
+    def __str__(self):
+        return(str(self.id))
+
+    def total(self):
+        """
+        docstring
+        """
+        return(self.quantite*self.produit.prix_unitaire)
+
+    def libelle(self):
+        return(self.produit.libelle)
+    
+    def prix_unitaire(self):
+        return(self.produit.prix_unitaire)
+
+    def augment_quantite(self,quantite):
+        self.quantite += int(quantite)
+        self.save()
+
+    def reduire_quantite(self,quantite):
+        self.quantite -= quantite
+        self.save()
+
+    def get_absolute_url(self):
+        return(self.produit.get_absolute_url())
+
+    def delete(self, using=None, keep_parents=False):
+        return super().delete(using=using, keep_parents=keep_parents)
     
 
-class Liste(models.Model):
+class DetailCommande(models.Model):
     """
         La classe modèle pour la liste de produits.
     """
-    produit = models.ForeignKey(Produit,on_delete=models.DO_NOTHING)
-    commande = models.ForeignKey(Commande,on_delete=models.DO_NOTHING)
-    quantite = models.IntegerField(_("Quantité"))
-
+    produit = models.ForeignKey(Produit,on_delete=models.CASCADE)
+    pu_prod = models.IntegerField(_('PU'),help_text="Prix Unitaire du produit.")
+    commande = models.ForeignKey(Commande,on_delete=models.CASCADE)
+    quantite = models.IntegerField(_("Quantité"),default=1)
+    create_date = models.DateTimeField(_("Date"), auto_now_add=True,help_text="Date de création")
+    modified_date = models.DateTimeField(_('Date de modification'), auto_now=True)
+    
     class Meta:
         
         verbose_name = 'liste'
