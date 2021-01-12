@@ -142,6 +142,7 @@ class PanierElementModel(models.Model):
     def __str__(self):
         return(str(self.id))
 
+    
     def total(self):
         """
         docstring

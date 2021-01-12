@@ -1,6 +1,2 @@
-db.sqlite3
-*.pyc
-venv
-.env
-AkunaShop/*
-.akuna-env
+akuna-env/
+akuna-env/*

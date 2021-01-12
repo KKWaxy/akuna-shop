@@ -80,7 +80,6 @@ class AnnonymousPanierJsonView(View):
             if(action=="add_Item"):
                 cart_id = int(cart_id)
                 cart = PanierModel.objects.get(pk=cart_id)
-
                 product_id = self.request.POST.get('produit')
                 product_id = int(product_id)
                 produit = Produit.objects.get(pk=product_id)
@@ -98,11 +97,16 @@ class AnnonymousPanierJsonView(View):
         else:
             print(self.request.POST)
 
-    def put(self,request,old_data,new_data,*args,**kwargs):
+    def put(self,*args,**kwargs):
         """
         La méthode de modification d'une détail la commande
         """
-        pass
+        if(self.request.is_ajax()):
+            # action = self.request.PUT.get('action')
+            # cart_id = self.request.PUT.get('cart')
+            # new_value = self.request.PUT.get('new_value')
+           
+            print(type(self.request.body))
 
     def delete(self,data,args):
         """

@@ -9,7 +9,6 @@
 	<div class="col-md-8 col-xs-12">
 		<form action="{% url 'cart' %}" method="post">
 			{% csrf_token %}
-			
 				<table class="d-table justify-content-center shadow align-items-center table table-responsive mt-5" cellspacing="3">
 						<thead>
 							<tr class="mb-2 panier-titre rounded-top">
@@ -24,10 +23,10 @@
 						
 						<tbody>
 							{% for elt_panier in panier_elts %}
-							<tr class="d-table-row mt-2">
+							<tr class="d-table-row mt-2" id="{{ elt_panier.id }}">
 								<td class="d-flex  justify-content-center align-items-center">
 									<div class="mt-3">
-										<a href="#" class="delete_item d-flex justify-content-center align-items-center m-0" aria-label="suprimer-element" data-title="{{ elt_panier.produit.libelle }}" data-action="delete" data-product_id="{{ elt_panier.id}}">
+										<a href="#" class="delete_item d-flex justify-content-center align-items-center m-0" aria-label="suprimer-element" data-title="{{ elt_panier.produit.libelle }}" data-action="delete" data-cart_item="{{ elt_panier.id}}">
 											<input type="hidden" name="{{ elt_panier.id }}" value="">
 											<span class="mr-2 suprimer-produit-panier">Suprimer</span>
 											<i class="fa fa-trash suprimer-produit-panier-icon"></i>
@@ -52,15 +51,15 @@
 								<td class="" data-title="Quantité">
 									<div class="mt-2">
 										<div class="quantity buttons_added">
-											<span class="minus kt-spin-button kt-icon-angle-down"></span>
-											<input type="number" id="quantity" class=" form-control-range form-control" step="1" min="0" max="{{ elt_panier.produit.quantite_stock }}" name="{{elt_panier.id}}" value="1" title="Qté" size="4" placeholder="" inputmode="numeric">
 											<span class="plus kt-spin-button kt-icon-angle-up"></span>
+											<input type="number" id="quantity" class=" form-control-range form-control" step="1" min="1" max="{{ elt_panier.produit.quantite_stock }}" name="{{elt_panier.id}}" value="1" title="Qté" size="4" placeholder="" inputmode="numeric">
+											<span class="minus kt-spin-button kt-icon-angle-down"></span>
 										</div>
 									</div>
 								</td>
 								<td class="product-subtotal" data-title="Sous-total">
 									<div class="panier-sous-total mt-3">
-										<span class=""><strong>{{elt_panier.produit.total}} CFA</strong></bdi></span>
+										<span class=""><strong>{{elt_panier.total}} CFA</strong></bdi></span>
 									</div>
 								</td>
 							</tr>
@@ -79,10 +78,9 @@
 						</tbody>
 						
 				</table>
-			
 		</form>
 	</div>
-	<aside class="col-md-3 d-flex  border rounded">
+	<aside class="col-md-3 d-flex position-fixed-top border rounded">
 		<div class="aside-valide-panier">
 			<h5 class="Bilan-panier panier ">Bilan</h5>
 		</div>
